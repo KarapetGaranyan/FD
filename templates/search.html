@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<br/>
+	<h2>You Searched For: <em>{{ searched }}</em></h2>
+	
+	<br/>
+
+	{% if uls %}
+
+	{% for ul in uls %}
+		<div class="shadow p-3 mb-5 bg-body rounded">
+	<h2><a href="{{ url_for('ul', id=ul.id)}}">{{ ul.name }}</a></h2>
+	<small>
+
+	<br/><br/>
+	<a href="{{ url_for('ul', id=ul.id)}}" class="btn btn-outline-secondary btn-sm">Просмотр</a>
+	
+	<a href="{{ url_for('edit_ul', id=ul.id)}}" class="btn btn-outline-secondary btn-sm">Редактирование</a>
+
+	<a href="{{ url_for('delete_ul', id=ul.id)}}" class="btn btn-outline-danger btn-sm">Удаление</a>
+
+	<br/><br/>
+</div>
+<br/>
+	{% endfor %}
+
+	{% else %}
+	Sorry, your search term: <strong>{{ searched }}</strong> was not found...
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+{% endfor %}
+
+	<h1>Юридические лица</h1>
+		<br/>
+
+<div class="shadow p-3 mb-5 bg-body rounded">
+	{{ ul.name }} <br/>
+	{{ ul.inn }} <br/>
+</div>
+<a href="{{ url_for('rko', id=ul.id) }}" class="btn btn-outline-secondary btn-sm">Договоры РКО</a>
+{% if ul.poster_id == current_user.id or current_user.id == 1 %}
+	<a href="{{ url_for('edit_ul', id=ul.id) }}" class="btn btn-outline-secondary btn-sm">Редактирование</a>
+	<a href="{{ url_for('delete_ul', id=ul.id) }}" class="btn btn-outline-danger btn-sm">Удаление</a>
+	<a href="{{ url_for('uls')}}" class="btn btn-outline-secondary btn-sm">Юридические лица</a>
+{% endif %}
+
+{% endblock %}

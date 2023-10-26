@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+{% endfor %}
+
+{% if current_user.is_authenticated %}
+
+	<h1>Регистрация ЮЛ</h1>
+		<br/>
+	<div class="shadow p-3 mb-5 bg-body rounded">
+		<form method="POST">
+			{{ form.hidden_tag() }}
+			{{ form.name.label(class="form-label") }}
+			{{ form.name(class="form-control") }}
+			<br/>
+			{{ form.name_sokr.label(class="form-label") }}
+			{{ form.name_sokr(class="form-control") }}
+			<br/>
+			{{ form.inn.label(class="form-label") }}
+			{{ form.inn(class="form-control", rows="10") }}
+			<br/>
+            {{ form.ogrn.label(class="form-label") }}
+			{{ form.ogrn(class="form-control") }}
+			<br/>
+			{{ form.address.label(class="form-label") }}
+			{{ form.address(class="form-control") }}
+			<br/>
+			{{ form.kpp.label(class="form-label") }}
+			{{ form.kpp(class="form-control") }}
+			<br/>
+			{{ form.okpo.label(class="form-label") }}
+			{{ form.okpo(class="form-control", rows="10") }}
+			<br/>
+            {{ form.director.label(class="form-label") }}
+			{{ form.director(class="form-control") }}
+			<br/>
+			{{ form.director_r.label(class="form-label") }}
+			{{ form.director_r(class="form-control") }}
+			<br/>
+			{{ form.dolzhnost.label(class="form-label") }}
+			{{ form.dolzhnost(class="form-control", rows="10") }}
+			<br/>
+            {{ form.dolzhnost_r.label(class="form-label") }}
+			{{ form.dolzhnost_r(class="form-control") }}
+			<br/>
+			{{ form.osnovanie.label(class="form-label") }}
+			{{ form.osnovanie(class="form-control") }}
+			<br/>
+			{{ form.telephone.label(class="form-label") }}
+			{{ form.telephone(class="form-control", rows="10") }}
+			<br/>
+            {{ form.email.label(class="form-label") }}
+			{{ form.email(class="form-control") }}
+			<br/>
+			{{ form.domen.label(class="form-label") }}
+			{{ form.domen(class="form-control") }}
+			<br/>
+			{{ form.nomer.label(class="form-label") }}
+			{{ form.nomer(class="form-control", rows="10") }}
+			<br/>
+			{{ form.poster_id.label(class="form-label") }}
+			{{ form.poster_id(class="form-control", rows="10") }}
+			<br/>
+			{{ form.submit(class="btn btn-secondary") }}
+		</form>
+	</div>
+
+{% else %}
+<h2>Must Be Logged In...</h2>
+<p>Sorry, You must be logged in to access this page!</p>
+
+<a href="{{ url_for('login') }}">Login Here</a>
+
+{% endif %}
+
+
+{% endblock %}
